@@ -1,0 +1,9 @@
+//This file is added in extension to handle the path alias stuff separately
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
