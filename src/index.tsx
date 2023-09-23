@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {CssBaseline} from '@mui/material';
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {CssBaseline} from '@mui/material';
 
 import '@fontsource/public-sans/300.css';
 import '@fontsource/public-sans/400.css';
