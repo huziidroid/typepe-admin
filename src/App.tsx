@@ -1,13 +1,17 @@
 import React from 'react';
+import {RouterProvider} from 'react-router-dom';
+
 import './App.css';
-import {AppButton} from '@/components';
+import {AUTHENTICATED_ROUTER, UNAUTHENTICATED_ROUTER} from './routes';
 
 function App() {
+  const isLoggedIn = false;
+  const router = isLoggedIn ? AUTHENTICATED_ROUTER : UNAUTHENTICATED_ROUTER;
+
   return (
-    <div className='App'>
-      <p>app</p>
-      <AppButton />
-    </div>
+    <React.Fragment>
+      <RouterProvider router={router} />
+    </React.Fragment>
   );
 }
 
