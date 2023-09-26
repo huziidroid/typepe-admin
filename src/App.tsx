@@ -9,7 +9,7 @@ import {AppHeader} from './components';
 import {AppTheme} from './assets/theme';
 
 function App() {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
   const router = isLoggedIn ? AUTHENTICATED_ROUTER : UNAUTHENTICATED_ROUTER;
 
   return (
@@ -18,6 +18,7 @@ function App() {
         <When condition={isLoggedIn}>
           <AppHeader />
         </When>
+
         <RouterProvider router={router} />
       </ThemeProvider>
     </React.Fragment>
