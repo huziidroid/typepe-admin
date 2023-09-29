@@ -11,7 +11,7 @@ const AppHeader = () => {
           <Menu sx={{color: 'white'}} />
         </IconButton>
         <Typography variant='h5' fontWeight={700}>
-          Typepe Admin
+          Typepe.in
         </Typography>
 
         {/* Avatar */}

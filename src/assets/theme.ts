@@ -6,7 +6,7 @@ export const appThemeConfig = {
     primaryContainer: {main: 'rgb(240, 240, 240)', contrastText: 'rgb(57, 62, 70)'},
     secondary: {main: 'rgb(222, 222, 222)', contrastText: 'rgb(39, 40, 41)'},
     warning: {main: '#F0A73A', contrastText: '#EFF6FF'},
-    background: {default: '#FFFFFF', paper: '#FFFFFF'},
+    background: {default: '#FFFFFF', paper: 'rgb(240, 240, 240)'},
     text: {disabled: '#A0A0A0', primary: '#1B3149', secondary: '#1B3149CC'},
     error: {main: '#DF4747'},
     success: {main: '#46C779'},
@@ -104,6 +104,15 @@ export const appThemeConfig = {
     MuiInput: {
       defaultProps: {size: 'medium' as const},
     },
+    MuiSelect: {
+      styleOverrides: {
+        root: {
+          height: '45px',
+          borderRadius: '8px',
+          minWidth: '200px',
+        },
+      },
+    },
     MuiButton: {
       defaultProps: {
         size: 'large' as const,
@@ -111,22 +120,25 @@ export const appThemeConfig = {
 
       styleOverrides: {
         root: {
-          fontWeight: 700,
+          fontWeight: 600,
           fontSize: '16px',
           borderRadius: '8px',
           boxShadow: 'none',
         },
 
         sizeLarge: {
-          minHeight: '0',
-          minWidth: '0',
-          padding: '10px 20px',
+          fontSize: '16px',
+          padding: '8px 20px',
+        },
+
+        sizeMedium: {
+          fontSize: '14px',
+          fontWeight: 600,
         },
 
         sizeSmall: {
-          minHeight: '0',
-          minWidth: '0',
-          padding: '9px 20px',
+          fontSize: '12px',
+          fontWeight: 600,
         },
 
         contained: {
