@@ -1,25 +1,39 @@
-import {AppBar, Avatar, IconButton, Typography} from '@mui/material';
-import {Menu} from '@mui/icons-material';
+import {Avatar, Box, IconButton, Typography} from '@mui/material';
+import {Menu, NotificationImportant} from '@mui/icons-material';
 
-import {HeaderToolbar} from './styles';
+import {CustomAppBar, HeaderToolbar} from './styles';
 
-const AppHeader = () => {
+interface IAppHeaderProps {
+  isDrawerOpen?: boolean;
+  onClickMenuIcon?: React.MouseEventHandler<HTMLButtonElement>;
+}
+
+const AppHeader = (props: IAppHeaderProps) => {
+  const {onClickMenuIcon, isDrawerOpen} = props;
+
   return (
-    <AppBar position='sticky'>
+    <CustomAppBar position='fixed' open={isDrawerOpen}>
       <HeaderToolbar>
-        <IconButton>
+        <IconButton onClick={onClickMenuIcon} edge='start' sx={{mr: 2, ...(isDrawerOpen && {display: 'none'})}}>
           <Menu sx={{color: 'white'}} />
         </IconButton>
+
         <Typography variant='h5' fontWeight={700}>
           Typepe.in
         </Typography>
 
         {/* Avatar */}
-        <IconButton>
-          <Avatar alt='profile' />
-        </IconButton>
+        <Box>
+          <IconButton>
+            <NotificationImportant sx={{color: 'white'}} />
+          </IconButton>
+
+          <IconButton>
+            <Avatar alt='profile' />
+          </IconButton>
+        </Box>
       </HeaderToolbar>
-    </AppBar>
+    </CustomAppBar>
   );
 };
 

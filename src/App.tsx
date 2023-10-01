@@ -1,27 +1,28 @@
 import React from 'react';
 import {RouterProvider} from 'react-router-dom';
 import {When} from 'react-if';
-import {ThemeProvider} from '@mui/material';
+import {Box, ThemeProvider, Toolbar} from '@mui/material';
 
 import './App.css';
 import {AUTHENTICATED_ROUTER, UNAUTHENTICATED_ROUTER} from './routes';
-import {AppHeader} from './components';
+
 import {AppTheme} from './assets/theme';
+// import {DrawerItems} from './utils';
 
 function App() {
   const isLoggedIn = true;
   const router = isLoggedIn ? AUTHENTICATED_ROUTER : UNAUTHENTICATED_ROUTER;
 
   return (
-    <React.Fragment>
+    <Box display='flex'>
       <ThemeProvider theme={AppTheme}>
-        <When condition={isLoggedIn}>
-          <AppHeader />
-        </When>
-
-        <RouterProvider router={router} />
+        <When condition={isLoggedIn}>{/* <AppDrawer items={DrawerItems} /> */}</When>
+        <Box flexGrow={1} component='main'>
+          {isLoggedIn && <Toolbar />}
+          <RouterProvider router={router} />
+        </Box>
       </ThemeProvider>
-    </React.Fragment>
+    </Box>
   );
 }
 

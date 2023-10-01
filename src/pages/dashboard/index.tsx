@@ -1,4 +1,4 @@
-import {PaginatedTable} from '@/components';
+import {PaginatedTable, withDrawer} from '@/components';
 import TableButton from '@/components/paginatedTable/components/TableButton';
 import {TableDataType} from '@/types';
 
@@ -190,7 +190,7 @@ const data: TableDataType<TAppointment> = [
 
 const Dashboard = () => {
   return (
-    <Box marginTop={5}>
+    <Box>
       <PaginatedTable<TAppointment>
         data={data}
         searchBarProps={{onSearch: () => {}}}
@@ -225,4 +225,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default withDrawer(Dashboard);
