@@ -1,6 +1,6 @@
 import {TextFieldProps, TextField, InputAdornment, IconButton, InputBaseComponentProps} from '@mui/material';
 import React, {useMemo, useState} from 'react';
-import {Else, If, When} from 'react-if';
+import {Else, If, Then, When} from 'react-if';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 
@@ -36,7 +36,9 @@ const InputField = (props: IInputFieldProps) => {
     return (
       <IconButton onClick={togglePasswordIcon}>
         <If condition={isPasswordVisible}>
-          <VisibilityOutlinedIcon fontSize='medium' />
+          <Then>
+            <VisibilityOutlinedIcon fontSize='medium' />
+          </Then>
           <Else>
             <VisibilityOffOutlinedIcon fontSize='medium' />
           </Else>

@@ -1,21 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {CssBaseline} from '@mui/material';
-
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {Provider} from 'react-redux';
+import {QueryClientProvider} from '@tanstack/react-query';
 
 import '@fontsource/public-sans/300.css';
 import '@fontsource/public-sans/400.css';
 import '@fontsource/public-sans/500.css';
 import '@fontsource/public-sans/700.css';
 
+import store from './store/store';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import {queryClient} from './services';
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <CssBaseline />
-    <App />
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <CssBaseline />
+        <App />
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>,
 );
 

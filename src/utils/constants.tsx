@@ -3,6 +3,9 @@ import {Dashboard} from '@mui/icons-material';
 import {AppTheme, PatentIcon, ProductIcon, VerifierIcon} from '@/assets';
 import {TDrawerItem} from '@/types';
 
+export const DRAWER_WIDTH = 300;
+export const AUTH_TOKEN_KEY = '@TOKEN';
+
 export enum ROUTES_NAMES {
   LOGIN = '/login',
   DASHBOARD = '/dashboard',
@@ -44,5 +47,3 @@ export const DrawerItems: TDrawerItem[] = [
     route: ROUTES_NAMES.STAMPS,
   },
 ];
-
-export const DRAWER_WIDTH = 300;

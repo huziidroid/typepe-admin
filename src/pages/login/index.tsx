@@ -7,11 +7,17 @@ import {FieldStack, ImageContainer} from './styles';
 import {loginSchema} from '@/utils';
 import {InputFormField} from '@/components';
 import {AppLogo} from '@/assets';
+import {TLoginPayload} from '@/types';
+import {useLogin} from '@/services';
 
 const LoginPage = () => {
-  const methods = useForm({defaultValues: {email: '', password: ''}, mode: 'onChange', resolver: yupResolver(loginSchema)});
+  const methods = useForm<TLoginPayload>({defaultValues: {email: 'huzaifa@gmail.com', password: '323232'}, mode: 'onChange', resolver: yupResolver(loginSchema)});
 
-  const onSubmit = () => {};
+  const {mutate} = useLogin({showLoading: true});
+
+  const onSubmit = (data: TLoginPayload) => {
+    mutate(data);
+  };
 
   return (
     <FormProvider {...methods}>
