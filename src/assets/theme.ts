@@ -70,12 +70,9 @@ export const appThemeConfig = {
     MuiCard: {
       styleOverrides: {
         root: ({ownerState}: {ownerState: CardProps}) => ({
-          border: '1px solid rgb(34, 40, 49)',
           borderRadius: '11px',
           color: '#1B3149',
           cursor: 'pointer',
-          boxShadow: 'none',
-
           ...(ownerState.raised === true && {
             boxShadow: '0px 20px 19px rgb(248, 248, 248)',
           }),

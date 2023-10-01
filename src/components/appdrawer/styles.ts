@@ -1,31 +1,22 @@
-import {Box} from '@mui/material';
+import {Box, Drawer} from '@mui/material';
 import {styled} from '@mui/material/styles';
 
 import {DRAWER_WIDTH} from '@/utils';
-
-export const MainContentContainer = styled('main', {shouldForwardProp: prop => prop !== 'open'})<{
-  open?: boolean;
-}>(({theme, open}) => ({
-  flexGrow: 1,
-  transition: theme.transitions.create('margin', {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: `${DRAWER_WIDTH}px`,
-  }),
-}));
+import {withAttrs} from '@/styles';
 
 export const DrawerHeader = styled(Box)(({theme}) => ({
   display: 'flex',
-  alignItems: 'flex-start',
-  padding: theme.spacing(2, 1.6),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: 'space-between',
+  alignItems: 'center',
+  padding: theme.spacing(0, 2),
   height: 170,
 }));
+
+export const MainPageContent = styled(Box)({marginLeft: `${DRAWER_WIDTH}px`});
+
+export const CustomDrawer = withAttrs(
+  styled(Drawer)(() => ({
+    width: DRAWER_WIDTH,
+    ['& .MuiDrawer-paper']: {width: DRAWER_WIDTH, boxSizing: 'border-box', borderWidth: 0.5},
+  })),
+  {variant: 'permanent'},
+);
