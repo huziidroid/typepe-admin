@@ -1,10 +1,10 @@
-import {Box, BoxProps} from '@mui/material';
+import {Stack, StackProps} from '@mui/material';
 
-const PageLayout = ({children, ...rest}: BoxProps) => {
+const PageLayout = ({children, ...rest}: StackProps) => {
   return (
-    <Box p={8} sx={{display: 'flex'}} {...rest}>
+    <Stack p={7} {...rest}>
       {children}
-    </Box>
+    </Stack>
   );
 };
 

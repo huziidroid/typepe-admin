@@ -13,16 +13,18 @@ import {useGetProfile} from './services';
 function App() {
   const {data: user} = useGetProfile({showLoading: true});
   const isLoggedIn = !isEmptyOrNil(user?._id);
+
   const isLoading = useAppSelector(selectLoading);
   const dispatch = useAppDispatch();
   const toasterState = useAppSelector(selectToast).snackBarState;
   const router = isLoggedIn ? AUTHENTICATED_ROUTER : UNAUTHENTICATED_ROUTER;
 
   return (
-    <Box display='flex'>
+    <Box display='flex' sx={{backgroundColor: theme => theme.palette.grey.A100, height: '100vh'}}>
       <ThemeProvider theme={AppTheme}>
         {toasterState && <AppSnackbar onClose={() => dispatch(closeToaster())} state={toasterState} />}
         <AppLoader isLoading={isLoading} />
+
         <Box flexGrow={1} component='main'>
           {isLoggedIn && <Toolbar />}
           <RouterProvider router={router} />

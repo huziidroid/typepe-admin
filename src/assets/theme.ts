@@ -6,7 +6,7 @@ export const appThemeConfig = {
     primaryContainer: {main: 'rgb(240, 240, 240)', contrastText: 'rgb(57, 62, 70)'},
     secondary: {main: 'rgb(222, 222, 222)', contrastText: 'rgb(39, 40, 41)'},
     warning: {main: '#F0A73A', contrastText: '#EFF6FF'},
-    background: {default: '#FFFFFF', paper: 'rgb(240, 240, 240)'},
+    background: {default: 'rgb(240, 240, 240)', paper: '#FFFFFF'},
     text: {disabled: '#A0A0A0', primary: '#1B3149', secondary: '#1B3149CC'},
     error: {main: '#DF4747'},
     success: {main: '#46C779'},

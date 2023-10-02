@@ -33,7 +33,7 @@ const StatCard = (props: IStatCardProps) => {
 
       <CustomCardActions onClick={navigateTo}>
         <ViewResourceText>{`View all ${label}`}</ViewResourceText>
-        <ArrowCircleRight />
+        <ArrowCircleRight color='secondary' />
       </CustomCardActions>
     </Main>
   );

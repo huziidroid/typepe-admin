@@ -14,9 +14,9 @@ export const DrawerHeader = styled(Box)(({theme}) => ({
 export const MainPageContent = styled(Box)({marginLeft: `${DRAWER_WIDTH}px`});
 
 export const CustomDrawer = withAttrs(
-  styled(Drawer)(() => ({
+  styled(Drawer)(({theme}) => ({
     width: DRAWER_WIDTH,
-    ['& .MuiDrawer-paper']: {width: DRAWER_WIDTH, boxSizing: 'border-box', borderWidth: 0.5},
+    ['& .MuiDrawer-paper']: {width: DRAWER_WIDTH, boxSizing: 'border-box', borderWidth: 0.5, backgroundColor: theme.palette.background.default},
   })),
   {variant: 'permanent'},
 );

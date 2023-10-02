@@ -14,7 +14,7 @@ export const IconContainer = styled(Box)(({theme}) => ({
 }));
 
 export const ViewResourceText = styled(Typography)(({theme}) => ({
-  color: theme.palette.info.main,
+  color: theme.palette.primary.contrastText,
   fontSize: 14,
   fontWeight: '600',
 }));
@@ -22,7 +22,7 @@ export const ViewResourceText = styled(Typography)(({theme}) => ({
 export const CustomCardActions = styled(CardActions)(({theme}) => ({
   display: 'flex',
   justifyContent: 'space-between',
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: theme.palette.grey[700],
 }));
 
 export const Main = withAttrs(
