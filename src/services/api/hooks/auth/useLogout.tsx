@@ -25,6 +25,6 @@ export const useLogout = ({showLoading = false}: TShowLoading) => {
   return useMutation(logoutHelper, {
     onMutate: () => showLoading && dispatch(showLoader()),
     onSettled: () => showLoading && dispatch(hideLoader()),
-    onSuccess: data => dispatch(setToaster({type: 'error', message: data})),
+    onSuccess: data => dispatch(setToaster({type: 'success', message: data})),
   });
 };

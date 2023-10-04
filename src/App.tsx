@@ -1,6 +1,6 @@
 import React from 'react';
 import {RouterProvider} from 'react-router-dom';
-import {Box, ThemeProvider, Toolbar} from '@mui/material';
+import {ThemeProvider} from '@mui/material';
 
 import './App.css';
 import {AUTHENTICATED_ROUTER, UNAUTHENTICATED_ROUTER} from './routes';
@@ -20,17 +20,12 @@ function App() {
   const router = isLoggedIn ? AUTHENTICATED_ROUTER : UNAUTHENTICATED_ROUTER;
 
   return (
-    <Box display='flex' sx={{backgroundColor: theme => theme.palette.grey.A100, height: '100vh'}}>
-      <ThemeProvider theme={AppTheme}>
-        {toasterState && <AppSnackbar onClose={() => dispatch(closeToaster())} state={toasterState} />}
-        <AppLoader isLoading={isLoading} />
+    <ThemeProvider theme={AppTheme}>
+      {toasterState && <AppSnackbar onClose={() => dispatch(closeToaster())} state={toasterState} />}
+      <AppLoader isLoading={isLoading} />
 
-        <Box flexGrow={1} component='main'>
-          {isLoggedIn && <Toolbar />}
-          <RouterProvider router={router} />
-        </Box>
-      </ThemeProvider>
-    </Box>
+      <RouterProvider router={router} />
+    </ThemeProvider>
   );
 }
 

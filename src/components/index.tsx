@@ -9,4 +9,4 @@ export {default as SelectFormInput} from './formFields/SelectFormInput';
 export {withDrawer} from './appdrawer';
 export {default as AppLoader} from './appLoader';
 export {default as AppSnackbar} from './appSnackbar';
-export {default as PageLayout} from './pageLayout';
+export {default as DateInput} from './formFields/DateInput';

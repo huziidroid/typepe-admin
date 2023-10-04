@@ -7,7 +7,7 @@ import {ISelectInputProps} from '@/components/formFields/SelectInput';
 import {ISearchBarProps} from '@/components/searchbar';
 
 interface IEnhancedToolbar {
-  title: string;
+  title?: string;
   buttonProps?: ITableButtonProps;
 
   selectInputProps?: ISelectInputProps;
@@ -21,11 +21,11 @@ function EnhancedTableToolbar(props: IEnhancedToolbar) {
 
   return (
     <Toolbar>
-      <Typography variant='h5' id='tableTitle'>
+      <Typography variant='h5' component='h5' width='20%'>
         {title}
       </Typography>
 
-      <Row width='100%' justifyContent='flex-end' marginLeft={5}>
+      <Row width='100%' justifyContent='flex-end'>
         {onSearch !== undefined && <Searchbar onSearch={onSearch} {...restSearchbarProps} sx={{mr: 2}} />}
         {data.length > 0 && <SelectInput data={data} {...restSelectInputProps} formControlProps={{sx: {height: '45px'}}} />}
         {buttonProps?.title && <TableButton {...buttonProps} sx={{ml: 2}} />}

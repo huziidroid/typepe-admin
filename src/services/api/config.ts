@@ -11,7 +11,7 @@ export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       retry: 1,
-      retryDelay: 4000,
+      retryDelay: 1000,
     },
     mutations: {},
   },

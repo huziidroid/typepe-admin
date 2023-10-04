@@ -53,6 +53,7 @@ export const useAppMutation = <TData, TVariables>(args: MutationArgs<TData, TVar
   return useMutation(queryFn, {
     ...options,
     onSuccess: (data, variables) => {
+      dispatch(setToaster({type: 'success', message: data.data.message}));
       if (onSuccess) onSuccess(data.data, variables);
     },
 

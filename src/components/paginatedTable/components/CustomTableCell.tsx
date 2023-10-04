@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Checkbox} from '@mui/material';
+import {Avatar, Checkbox, Switch} from '@mui/material';
 
 import {TCellAction} from '@/types';
 import TableButton from './TableButton';
@@ -35,6 +35,12 @@ function CustomTableCell<T, R>({type = 'text', value, resource, callback, compon
       return (
         <RowCell>
           <Checkbox checked={value as boolean} onChange={onAction} />
+        </RowCell>
+      );
+    case 'switch':
+      return (
+        <RowCell>
+          <Switch checked={value as boolean} onChange={onAction} />
         </RowCell>
       );
     case 'text':

@@ -4,7 +4,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 
 import DrawerListItem from './components/DrawerListItem';
 import AppHeader from '../appHeader';
-import {CustomDrawer, DrawerHeader, MainPageContent} from './styles';
+import {CustomDrawer, DrawerHeader} from './styles';
 import {AppLogo} from '@/assets';
 import {DrawerItems, getCurrentPath} from '@/utils';
 
@@ -14,7 +14,7 @@ export const withDrawer = <T extends PropsWithChildren>(WrappedComponent: React.
     const currentPath = useLocation();
 
     return (
-      <Box>
+      <Box display='flex' height='100%'>
         <AppHeader />
         <CustomDrawer>
           <Toolbar />
@@ -30,9 +30,10 @@ export const withDrawer = <T extends PropsWithChildren>(WrappedComponent: React.
           })}
         </CustomDrawer>
 
-        <MainPageContent>
+        <Box sx={{flexGrow: 1, p: 7, height: 'calc(100%-7px)', backgroundColor: theme => theme.palette.grey.A100}}>
+          <Toolbar />
           <WrappedComponent {...props} />
-        </MainPageContent>
+        </Box>
       </Box>
     );
   };

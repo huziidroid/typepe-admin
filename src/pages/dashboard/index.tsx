@@ -1,36 +1,33 @@
-import {Description, Group} from '@mui/icons-material';
 import {Stack, Typography} from '@mui/material';
-import {useNavigate} from 'react-router-dom';
+import {useState} from 'react';
 
 import StatCard from './components/StatCard';
-import {PatentIcon, VerifierIcon} from '@/assets';
-import {PageLayout, withDrawer} from '@/components';
-import {Row} from '@/styles';
-import {ROUTES_NAMES} from '@/utils';
+import {DateInput, withDrawer} from '@/components';
+import {CardContainer, RowContainer} from './styles';
+import {FilterInitailState, FilterStateType, useGetDashboardCardInfo} from './utils';
 
 const Dashboard = () => {
-  const navigate = useNavigate();
+  const [filters, setFilters] = useState<FilterStateType>(FilterInitailState);
+  const cards = useGetDashboardCardInfo({startDate: filters.startDate?.unix() || null, endDate: filters.endDate?.unix() || null});
 
   return (
-    <PageLayout>
-      <Stack spacing={3}>
-        <Typography variant='h3'>Dashboard</Typography>
+    <Stack spacing={3}>
+      <RowContainer>
+        <Typography variant='h3' component='h3' mr={3}>
+          Dashboard
+        </Typography>
+        <RowContainer display='flex' flexDirection='row'>
+          <DateInput placeholder='Start date' value={filters.startDate} handleOnChange={value => setFilters({...filters, startDate: value})} formControlProps={{sx: {mr: 2}}} />
+          <DateInput placeholder='End date' value={filters.endDate} handleOnChange={value => setFilters({...filters, endDate: value})} />
+        </RowContainer>
+      </RowContainer>
 
-        <Stack spacing={4}>
-          <Row>
-            <StatCard label='Patent Officials' count={9} icon={<PatentIcon height={30} width={30} />} navigateTo={() => navigate(ROUTES_NAMES.PATENT_OFFICIAL)} />
-            <StatCard label='Verifier Officials' count={9} icon={<VerifierIcon height={30} width={30} />} navigateTo={() => navigate(ROUTES_NAMES.VERIFIER_OFFICIAL)} sx={{ml: 4}} />
-            <StatCard label='Customers' count={9} icon={<Group fontSize='large' color='primary' />} navigateTo={() => navigate(ROUTES_NAMES.PATENT_OFFICIAL)} sx={{ml: 4}} />
-          </Row>
-
-          <Row>
-            <StatCard label='Drafting Products' count={9} icon={<Description color='primary' fontSize='large' />} navigateTo={() => navigate(ROUTES_NAMES.PRODUCTS)} />
-            <StatCard label='Stamps' count={9} icon={<PatentIcon height={30} width={30} />} navigateTo={() => navigate(ROUTES_NAMES.STAMPS)} sx={{ml: 4}} />
-            <StatCard label='Patent Verifier' count={9} icon={<VerifierIcon height={30} width={30} />} navigateTo={() => navigate(ROUTES_NAMES.PATENT_OFFICIAL)} sx={{ml: 4}} />
-          </Row>
-        </Stack>
-      </Stack>
-    </PageLayout>
+      <CardContainer>
+        {cards.map((card, i) => (
+          <StatCard key={card.label + i.toString()} count={card.count} label={card.label} icon={card.icon} navigateTo={card.navigateTo} />
+        ))}
+      </CardContainer>
+    </Stack>
   );
 };
 

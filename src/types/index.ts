@@ -1,7 +1,7 @@
 import {SnackbarOrigin} from '@mui/material';
 
 // pagination table Types
-export type TCellVariant = 'checkbox' | 'button' | 'avatar' | 'text' | 'custom';
+export type TCellVariant = 'checkbox' | 'button' | 'avatar' | 'text' | 'switch' | 'custom';
 
 export type TCellAction<T> = {type?: TCellVariant; callback?: (args: T) => void; component?: (args: T) => React.ReactElement};
 
@@ -54,3 +54,5 @@ export type TLoginPayload = {
   email: string;
   password: string;
 };
+
+export type TDashboardFilterParams = {startDate: number | null; endDate: number | null};

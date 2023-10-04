@@ -13,21 +13,15 @@ export const IconContainer = styled(Box)(({theme}) => ({
   backgroundColor: theme.palette.secondary.main,
 }));
 
-export const ViewResourceText = styled(Typography)(({theme}) => ({
-  color: theme.palette.primary.contrastText,
-  fontSize: 14,
-  fontWeight: '600',
-}));
+export const ViewResourceText = styled(Typography)(({theme}) => ({color: theme.palette.primary.contrastText, fontSize: 14, fontWeight: '600'}));
 
-export const CustomCardActions = styled(CardActions)(({theme}) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  backgroundColor: theme.palette.grey[700],
-}));
+export const RowContainer = styled(Box)(() => ({display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}));
+
+export const CustomCardActions = styled(CardActions)(({theme}) => ({display: 'flex', justifyContent: 'space-between', backgroundColor: theme.palette.grey[700]}));
 
 export const Main = withAttrs(
   styled(Card)({
-    width: 340,
+    width: 300,
     height: 160,
     display: 'flex',
     flexDirection: 'column',
@@ -35,3 +29,13 @@ export const Main = withAttrs(
   }),
   {variant: 'elevation'},
 );
+
+export const CardContainer = styled(Box)(() => ({
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  columnGap: 20,
+  rowGap: 20,
+  flexBasis: '40%',
+  flexWrap: 'wrap',
+}));
