@@ -56,3 +56,26 @@ export type TLoginPayload = {
 };
 
 export type TDashboardFilterParams = {startDate: number | null; endDate: number | null};
+
+export type TCustomer = {
+  _id: string;
+  customerId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  language: string;
+  signatureImage: string;
+  updateAt: string;
+  createdAt: string;
+};
+
+export type TCustomerListItemWithAction = {
+  _id: string;
+  customerId: string;
+  profileImage: string;
+  name: string;
+  phoneNumber: string;
+  email: string;
+  action: string;
+};

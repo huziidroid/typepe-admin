@@ -25,7 +25,7 @@ function CustomTableCell<T, R>({type = 'text', value, resource, callback, compon
     case 'button':
       return (
         <RowCell>
-          <TableButton size='small' title={value as string} />
+          <TableButton size='small' title={value as string} onClick={onAction} />
         </RowCell>
       );
     case 'custom':

@@ -1,4 +1,4 @@
-import {Dashboard} from '@mui/icons-material';
+import {Dashboard, Group} from '@mui/icons-material';
 
 import {AppTheme, PatentIcon, ProductIcon, VerifierIcon} from '@/assets';
 import {TDrawerItem} from '@/types';
@@ -13,6 +13,7 @@ export enum ROUTES_NAMES {
   PRODUCTS = '/product',
   STAMPS = '/stamp',
   PATENT_OFFICIAL = '/patent-official',
+  CUSTOMER = '/customer',
 }
 
 export const DrawerItems: TDrawerItem[] = [
@@ -40,6 +41,13 @@ export const DrawerItems: TDrawerItem[] = [
     focusedIcon: <PatentIcon />,
     route: ROUTES_NAMES.PATENT_OFFICIAL,
   },
+  {
+    label: 'Customers',
+    icon: <Group color='disabled' />,
+    focusedIcon: <Group color='primary' />,
+    route: ROUTES_NAMES.CUSTOMER,
+  },
+
   {
     label: 'Stamps',
     icon: <PatentIcon color={AppTheme.palette.text.disabled} />,

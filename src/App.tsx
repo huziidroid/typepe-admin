@@ -5,18 +5,20 @@ import {ThemeProvider} from '@mui/material';
 import './App.css';
 import {AUTHENTICATED_ROUTER, UNAUTHENTICATED_ROUTER} from './routes';
 import {AppTheme} from './assets/theme';
-import {closeToaster, selectLoading, selectToast, useAppDispatch, useAppSelector} from './store';
+import {closeToaster, selectLoading, selectToast, selectUser, useAppDispatch, useAppSelector} from './store';
 import {AppLoader, AppSnackbar} from './components';
 import {isEmptyOrNil} from './utils';
 import {useGetProfile} from './services';
 
 function App() {
-  const {data: user} = useGetProfile({showLoading: true});
-  const isLoggedIn = !isEmptyOrNil(user?._id);
+  useGetProfile({showLoading: true});
 
   const isLoading = useAppSelector(selectLoading);
+  const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const toasterState = useAppSelector(selectToast).snackBarState;
+
+  const isLoggedIn = !isEmptyOrNil(user?._id);
   const router = isLoggedIn ? AUTHENTICATED_ROUTER : UNAUTHENTICATED_ROUTER;
 
   return (

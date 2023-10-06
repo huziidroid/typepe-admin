@@ -6,8 +6,6 @@ import {useAppQuery} from '../../baseQueries';
 import {axiosInstance} from '../../config';
 import {ROUTES} from '../../routes';
 import {updateUser, useAppDispatch} from '@/store';
-import {StorageService} from '@/services';
-import {AUTH_TOKEN_KEY} from '@/utils';
 
 export const useGetProfile = ({showLoading = false}: TShowLoading) => {
   const dispatch = useAppDispatch();
@@ -28,10 +26,8 @@ export const useGetProfile = ({showLoading = false}: TShowLoading) => {
 
   return useAppQuery<TUser>({
     queryKey: ['APP_USER'],
-    queryFn: () => {
-      const token = StorageService.getItem(AUTH_TOKEN_KEY);
-      return axiosInstance.get(ROUTES.PROFILE, {headers: {token: token}});
-    },
+    queryFn: () => axiosInstance.get(ROUTES.PROFILE),
+
     showLoading,
     onSuccess,
   });

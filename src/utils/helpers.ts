@@ -14,6 +14,8 @@ export const getCurrentPath = (pathname: string) => {
     return ROUTES_NAMES.PRODUCTS;
   } else if (pathname.includes('stamp')) {
     return ROUTES_NAMES.STAMPS;
+  } else if (pathname.includes('customer')) {
+    return ROUTES_NAMES.CUSTOMER;
   } else {
     return ROUTES_NAMES.DASHBOARD;
   }

@@ -85,7 +85,7 @@ export default function PaginatedTable<T = unknown>(props: IPaginatedTableProps<
                   );
                 })}
                 {emptyRows > 0 && (
-                  <TableRow style={{height: 75 * emptyRows}}>
+                  <TableRow style={{height: 65.5 * emptyRows}}>
                     <RowCell colSpan={6} />
                   </TableRow>
                 )}
