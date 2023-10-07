@@ -10,3 +10,4 @@ export {withDrawer} from './appdrawer';
 export {default as AppLoader} from './appLoader';
 export {default as AppSnackbar} from './appSnackbar';
 export {default as DateInput} from './formFields/DateInput';
+export {default as BackActionWithTitle} from './backActionWithTitle';

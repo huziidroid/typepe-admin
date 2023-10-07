@@ -12,3 +12,9 @@ export {useLogout} from './api/hooks/auth/useLogout';
 
 // customers
 export {useGetCustomers} from './api/hooks/customer/useGetCustomers';
+export {useGetCustomerDetails} from './api/hooks/customer/useGetCustomerDetails';
+
+// official
+export {useGetOfficials} from './api/hooks/official/useGetOfficials';
+export {useUpdateOfficialVerificationStatus} from './api/hooks/official/useUpdateOfficialVerificationStatus';
+export {useGetOfficialDetails} from './api/hooks/official/useGetOfficialDetails';

@@ -6,3 +6,5 @@ export {default as StampPage} from './stamp';
 export {default as PatentOfficialPage} from './patentOfficial';
 export {default as CustomersPage} from './customer';
 export {default as CustomerDetailsPage} from './customer/details';
+export {default as VerifierOfficialDetailsPage} from './verifierOfficial/details';
+export {default as PatentOfficialDetailsPage} from './patentOfficial/details';

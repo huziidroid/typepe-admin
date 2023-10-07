@@ -1,92 +1,36 @@
-import React from 'react';
+import {useNavigate} from 'react-router-dom';
 
 import {PaginatedTable, withDrawer} from '@/components';
-import {TableDataType} from '@/types';
-
-type TPatentOfficial = {
-  officialId: string;
-  name: string;
-  phoneNumber: string;
-  designation: string;
-  verified: boolean;
-  showDetails: string; // used for button text
-};
-
-const DummyData: TableDataType<TPatentOfficial> = [
-  {
-    name: 'Huzaifa',
-    officialId: 'PO-32423',
-    phoneNumber: '+92 3312220373',
-    designation: 'Senior Officer',
-    verified: true,
-    showDetails: 'View',
-  },
-  {
-    name: 'Huzaifa',
-    officialId: 'PO-32423',
-    phoneNumber: '+92 3312220373',
-    designation: 'Senior Officer',
-    verified: true,
-    showDetails: 'View',
-  },
-  {
-    name: 'Huzaifa',
-    officialId: 'PO-32423',
-    phoneNumber: '+92 3312220373',
-    designation: 'Senior Officer',
-    verified: true,
-    showDetails: 'View',
-  },
-  {
-    name: 'Huzaifa',
-    officialId: 'PO-32423',
-    phoneNumber: '+92 3312220373',
-    designation: 'Senior Officer',
-    verified: true,
-    showDetails: 'View',
-  },
-  {
-    name: 'Huzaifa',
-    officialId: 'PO-32423',
-    phoneNumber: '+92 3312220373',
-    designation: 'Senior Officer',
-    verified: false,
-    showDetails: 'View',
-  },
-  {
-    name: 'Huzaifa',
-    officialId: 'PO-32423',
-    phoneNumber: '+92 3312220373',
-    designation: 'Senior Officer',
-    verified: false,
-    showDetails: 'View',
-  },
-  {
-    name: 'Huzaifa',
-    officialId: 'PO-32423',
-    phoneNumber: '+92 3312220373',
-    designation: 'Senior Officer',
-    verified: false,
-    showDetails: 'View',
-  },
-];
+import {TOfficialListItemWithAction} from '@/types';
+import {useGetOfficials, useUpdateOfficialVerificationStatus} from '@/services';
+import {ROUTES_NAMES} from '@/utils';
 
 const PatentOfficialPage = () => {
+  const navigate = useNavigate();
+  const {data = {officials: [], total: 0}, handlePageChange, handlePageSizeChange, page, pageSize, onSearch} = useGetOfficials({showLoading: true, officialType: 'patent'});
+  const {mutate} = useUpdateOfficialVerificationStatus({showLoading: true});
+
+  const updateStatus = (official: TOfficialListItemWithAction) => {
+    mutate({officialId: official._id, verificationStatus: !official.verified});
+  };
+
   return (
-    <PaginatedTable<TPatentOfficial>
-      data={DummyData}
-      headers={['ID', 'Name', 'Phone Number', 'Desgination', 'Verified', 'Details']}
-      columns={['officialId', 'name', 'phoneNumber', 'designation', 'verified', 'showDetails']}
-      searchBarProps={{onSearch: () => {}}}
+    <PaginatedTable<TOfficialListItemWithAction>
+      data={data.officials}
+      headers={['Profile', 'ID', 'Name', 'Desgination', 'Status', 'Details']}
+      columns={['profileImage', 'officialId', 'name', 'designation', 'verified', 'action']}
+      searchBarProps={{onSearch}}
       title='Patent Official'
-      toolbarButtonProps={{title: 'Add'}}
       cellAttrs={{
-        officialId: {type: 'text'},
-        name: {type: 'text'},
-        phoneNumber: {type: 'text'},
-        verified: {type: 'switch', callback: official => alert(JSON.stringify(official))},
-        showDetails: {type: 'button', callback: () => {}},
+        profileImage: {type: 'avatar'},
+        verified: {type: 'switch', callback: official => updateStatus(official)},
+        action: {type: 'button', callback: ({_id}) => navigate(`${ROUTES_NAMES.PATENT_OFFICIAL}/${_id}`)},
       }}
+      page={page}
+      pageSize={pageSize}
+      handlePageChange={handlePageChange}
+      handlePageSizeChange={handlePageSizeChange}
+      total={data.total}
     />
   );
 };

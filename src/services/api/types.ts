@@ -56,3 +56,8 @@ export type InfiniteQueryArgs<TQueryData, TSelectData = TQueryData> = {
     'onSuccess' | 'onError' | 'onSettled' | 'select' | 'getNextPageParam' | 'refetchInterval'
   >;
 };
+
+export type TOfficialVerificationStatusPayload = {
+  officialId: string;
+  verificationStatus: boolean;
+};
