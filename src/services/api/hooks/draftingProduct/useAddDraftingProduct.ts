@@ -16,7 +16,7 @@ const prepareFormData = (data: TAddDraftingProductPayload) => {
   payload.append('discountPercentage', data.discountPercentage);
   payload.append('productFile', data.productFile);
   // @ts-ignore
-  payload.append('productForm', data.productForm);
+  payload.append('productForm', JSON.stringify(data.productForm));
   // @ts-ignore
   payload.append('productPrice', data.productPrice);
 
