@@ -5,10 +5,12 @@ export {axiosInstance, queryClient} from './api/config';
 export {useAppInfineQuery, useAppMutation, useAppQuery} from './api/baseQueries';
 
 // auth hooks
-
 export {useLogin} from './api/hooks/auth/useLogin';
 export {useGetProfile} from './api/hooks/auth/useGetProfile';
 export {useLogout} from './api/hooks/auth/useLogout';
+
+// dashboard
+export {useGetDashboardStats} from './api/hooks/dashboard/useGetDashboardStats';
 
 // customers
 export {useGetCustomers} from './api/hooks/customer/useGetCustomers';

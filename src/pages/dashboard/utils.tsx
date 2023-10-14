@@ -6,7 +6,8 @@ import {Dayjs} from 'dayjs';
 
 import {PatentIcon, VerifierIcon} from '@/assets';
 import {ROUTES_NAMES} from '@/utils';
-import {TDashboardFilterParams} from '@/types';
+import {TDashboardFilterParams, TDashboardStats} from '@/types';
+import {useGetDashboardStats} from '@/services';
 
 type FilterDate = Dayjs | null;
 
@@ -16,34 +17,36 @@ export const FilterInitailState: FilterStateType = {startDate: null, endDate: nu
 
 export const useGetDashboardCardInfo = ({startDate, endDate}: TDashboardFilterParams) => {
   const navigate = useNavigate();
+  const {data = {}} = useGetDashboardStats({showLoading: true, startDate, endDate});
+  const {customers = 0, draftingProducts = 0, patentOfficals = 0, verifierOfficials = 0} = data as TDashboardStats;
 
   return useMemo(
     () => [
       {
         label: 'Patent Officials',
-        count: 9,
+        count: patentOfficals,
         icon: <PatentIcon height={30} width={30} />,
         navigateTo: () => navigate(ROUTES_NAMES.PATENT_OFFICIAL),
       },
       {
         label: 'Verifier Officials',
-        count: 9,
+        count: verifierOfficials,
         icon: <VerifierIcon height={30} width={30} />,
-        navigateTo: () => navigate(ROUTES_NAMES.PATENT_OFFICIAL),
+        navigateTo: () => navigate(ROUTES_NAMES.VERIFIER_OFFICIAL),
       },
       {
         label: 'Customers',
-        count: 9,
+        count: customers,
         icon: <Group fontSize='large' color='primary' />,
-        navigateTo: () => navigate(ROUTES_NAMES.PATENT_OFFICIAL),
+        navigateTo: () => navigate(ROUTES_NAMES.CUSTOMER),
       },
       {
         label: 'Drafting Products',
-        count: 9,
+        count: draftingProducts,
         icon: <Description color='primary' fontSize='large' />,
-        navigateTo: () => navigate(ROUTES_NAMES.PATENT_OFFICIAL),
+        navigateTo: () => navigate(ROUTES_NAMES.PRODUCTS),
       },
     ],
-    [],
+    [customers, draftingProducts, patentOfficals, verifierOfficials],
   );
 };

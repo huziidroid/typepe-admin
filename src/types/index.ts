@@ -63,6 +63,13 @@ export type TLoginPayload = {
 
 export type TDashboardFilterParams = {startDate: number | null; endDate: number | null};
 
+export type TDashboardStats = {
+  customers: number;
+  draftingProducts: number;
+  patentOfficals: number;
+  verifierOfficials: number;
+};
+
 export type TCustomerListItem = {
   _id: string;
   customerId: string;
