@@ -1,20 +1,24 @@
-import {Stack} from '@mui/material';
+// import {useMemo} from 'react';
+import {Grid, Stack} from '@mui/material';
 import {useParams} from 'react-router-dom';
 
-import {BackActionWithTitle, withDrawer} from '@/components';
+import {BackActionWithTitle, ProfileCard, withDrawer} from '@/components';
 import {useGetOfficialDetails} from '@/services';
-import {TOfficial} from '@/types';
+import {getOfficialInfo} from '@/utils';
 
 const VerifierOfficialDetails = () => {
   const {_id: officialId = ''} = useParams();
-  const {data = {}} = useGetOfficialDetails({showLoading: true, officialId});
+  const {data} = useGetOfficialDetails({showLoading: true, officialId});
 
-  const {firstName, lastName} = data as TOfficial;
-  const name = `${firstName} ${lastName}`;
-
+  const {info, profileAvatar} = getOfficialInfo(data);
   return (
-    <Stack>
-      <BackActionWithTitle title={name} />
+    <Stack spacing={4}>
+      <BackActionWithTitle title={'Back'} />
+      <Grid container>
+        <Grid item xs={4}>
+          <ProfileCard cardInfo={info} profileImage={profileAvatar} />
+        </Grid>
+      </Grid>
     </Stack>
   );
 };

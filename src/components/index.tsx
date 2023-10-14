@@ -13,3 +13,4 @@ export {default as DateInput} from './formFields/DateInput';
 export {default as BackActionWithTitle} from './backActionWithTitle';
 export {default as FileInput} from './formFields/FileInput';
 export {default as MultiSelectorInput} from './formFields/MultiSelectorInput';
+export {default as ProfileCard} from './profileCard';
