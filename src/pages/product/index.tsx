@@ -1,5 +1,6 @@
 import {PaginatedTable, withDrawer} from '@/components';
-import React from 'react';
+import React, {useCallback, useState} from 'react';
+import AddProductModal from './components/AddProductModal';
 
 type TPaperDraftingProduct = {
   id: string;
@@ -54,21 +55,29 @@ const DummyData: TPaperDraftingProduct[] = [
 ];
 
 const ProductsPage = () => {
+  const [showAddProductModal, setShowAddProductModal] = useState(false);
+
+  const openModal = useCallback(() => setShowAddProductModal(true), []);
+  const closeModal = useCallback(() => setShowAddProductModal(false), []);
+
   return (
-    <PaginatedTable<TPaperDraftingProduct>
-      data={DummyData}
-      headers={['ID', 'Title', 'Number of Parties', 'Details']}
-      columns={['id', 'title', 'numberOfParties', 'showDetails']}
-      searchBarProps={{onSearch: () => {}}}
-      title='Drafting Products'
-      toolbarButtonProps={{title: 'Add'}}
-      cellAttrs={{
-        id: {type: 'text'},
-        title: {type: 'text'},
-        numberOfParties: {type: 'text'},
-        showDetails: {type: 'button', callback: () => {}},
-      }}
-    />
+    <>
+      <PaginatedTable<TPaperDraftingProduct>
+        data={DummyData}
+        headers={['ID', 'Title', 'Number of Parties', 'Details']}
+        columns={['id', 'title', 'numberOfParties', 'showDetails']}
+        searchBarProps={{onSearch: () => {}}}
+        title='Drafting Products'
+        toolbarButtonProps={{title: 'Add', onClick: openModal}}
+        cellAttrs={{
+          id: {type: 'text'},
+          title: {type: 'text'},
+          numberOfParties: {type: 'text'},
+          showDetails: {type: 'button', callback: () => {}},
+        }}
+      />
+      {showAddProductModal && <AddProductModal isOpen={showAddProductModal} onClose={closeModal} />}
+    </>
   );
 };
 

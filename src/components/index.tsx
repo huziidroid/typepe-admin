@@ -11,3 +11,5 @@ export {default as AppLoader} from './appLoader';
 export {default as AppSnackbar} from './appSnackbar';
 export {default as DateInput} from './formFields/DateInput';
 export {default as BackActionWithTitle} from './backActionWithTitle';
+export {default as FileInput} from './formFields/FileInput';
+export {default as MultiSelectorInput} from './formFields/MultiSelectorInput';

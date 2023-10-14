@@ -1,4 +1,4 @@
-import {TextFieldProps, TextField, InputAdornment, IconButton, InputBaseComponentProps} from '@mui/material';
+import {TextFieldProps, TextField, IconButton, InputBaseComponentProps} from '@mui/material';
 import React, {useMemo, useState} from 'react';
 import {Else, If, Then, When} from 'react-if';
 import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined';
@@ -7,6 +7,7 @@ import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import InputMask from './InputMask';
 import {StyledFormControl, StyledFormLabel} from './styles';
 import ErrorText from './ErrorText';
+import CustomInputAdornment from './components/CustomInputAdornment';
 
 export interface IInputFieldProps extends Omit<TextFieldProps<'outlined'>, 'variant'> {
   startAdornment?: string | React.ReactNode;
@@ -14,15 +15,6 @@ export interface IInputFieldProps extends Omit<TextFieldProps<'outlined'>, 'vari
   mask?: string;
   errorMsg?: string;
 }
-
-type CustomInputAdornmentProps = {
-  position: 'start' | 'end';
-  component: string | React.ReactNode;
-};
-
-const CustomInputAdornment = ({position, component}: CustomInputAdornmentProps) => {
-  return <InputAdornment position={position}>{component}</InputAdornment>;
-};
 
 const InputField = (props: IInputFieldProps) => {
   const {startAdornment, endAdornment, errorMsg, label, mask, type, ...rest} = props;

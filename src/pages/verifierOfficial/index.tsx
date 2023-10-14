@@ -21,7 +21,7 @@ const VerifierOfficialPage = () => {
       headers={['Profile', 'ID', 'Name', 'Desgination', 'Status', 'Details']}
       columns={['profileImage', 'officialId', 'name', 'designation', 'verified', 'action']}
       searchBarProps={{onSearch}}
-      title='Patent Official'
+      title='Verifier Official'
       cellAttrs={{
         profileImage: {type: 'avatar'},
         verified: {type: 'switch', callback: official => updateStatus(official)},
