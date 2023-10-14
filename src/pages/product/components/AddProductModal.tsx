@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import {useCallback} from 'react';
 import {Button, Paper, Stack, Typography} from '@mui/material';
 import {When} from 'react-if';
 import {FormProvider, useForm} from 'react-hook-form';
@@ -6,35 +6,19 @@ import {FormProvider, useForm} from 'react-hook-form';
 import {StyledModal} from '../styles';
 import {FileInput, InputFormField, MultiSelectorInput} from '@/components';
 import {ProductUtils} from '@/utils';
+import {useAddDraftingProduct} from '@/services';
+import {FormDefaultValues, TDraftingProductFormDefaultValues} from '../utils';
 
 interface IAddProductModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-type TProductFormSchema = Record<string, string[]>;
-
-type TDefaultValues = {
-  title: string;
-  numberOfParties: number;
-  productPrice: number;
-  discountPercentage: number;
-  productForm: TProductFormSchema;
-  productFile: File;
-  formFields: string[];
-};
-
-const FormDefaultValues: Partial<TDefaultValues> = {
-  title: '',
-  numberOfParties: 1,
-  productForm: {},
-  formFields: [],
-};
-
 const AddProductModal = (props: IAddProductModalProps) => {
   const {isOpen, onClose} = props;
 
-  const methods = useForm<TDefaultValues>({defaultValues: FormDefaultValues, mode: 'onChange'});
+  const methods = useForm<TDraftingProductFormDefaultValues>({defaultValues: FormDefaultValues, mode: 'onChange'});
+  const {mutate} = useAddDraftingProduct({showLoading: true});
 
   const {numberOfParties, productForm, formFields} = methods.watch();
 
@@ -50,8 +34,11 @@ const AddProductModal = (props: IAddProductModalProps) => {
     methods.setValue('productForm', {...prevSchema, [key]: value});
   }, []);
 
-  const onSubmit = (data: TDefaultValues) => {
-    console.log(data);
+  const onSubmit = (data: TDraftingProductFormDefaultValues) => {
+    mutate(
+      {title: data.title, discountPercentage: 0, numberOfParties: +data.numberOfParties, productFile: data.productFile, productForm: data.productForm, productPrice: +data.productPrice},
+      {onSuccess: onClose},
+    );
   };
 
   return (
@@ -66,7 +53,6 @@ const AddProductModal = (props: IAddProductModalProps) => {
           <Stack>
             <InputFormField name='title' label='Title' placeholder='Product Title' />
             <InputFormField name='productPrice' label='Product Price' type='number' placeholder='Enter product price' />
-            <InputFormField name='discountPercentage' label='Discount Percentage' type='number' placeholder='Enter discount percentage' />
             <InputFormField name='numberOfParties' label='No. of parties' type='number' placeholder='Enter number of parties' />
 
             <Stack spacing={3}>

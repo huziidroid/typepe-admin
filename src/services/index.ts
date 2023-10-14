@@ -20,3 +20,7 @@ export {useGetCustomerDetails} from './api/hooks/customer/useGetCustomerDetails'
 export {useGetOfficials} from './api/hooks/official/useGetOfficials';
 export {useUpdateOfficialVerificationStatus} from './api/hooks/official/useUpdateOfficialVerificationStatus';
 export {useGetOfficialDetails} from './api/hooks/official/useGetOfficialDetails';
+
+// drafting product
+export {useAddDraftingProduct} from './api/hooks/draftingProduct/useAddDraftingProduct';
+export {useGetDraftingProducts} from './api/hooks/draftingProduct/useGetDraftingProducts';

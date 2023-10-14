@@ -44,6 +44,8 @@ export type TSvgIconProps = {
   color?: string;
 };
 
+export type TProductFormSchema = Record<string, string[]>;
+
 export type TUser = {
   _id: string;
   name: string;
@@ -129,3 +131,14 @@ export type TOfficial = {
 };
 
 export type TOfficialListItemWithAction = TActionOnRow<TOfficialListItem>;
+
+export type TDraftingProductListItem = {
+  _id: string;
+  productId: string;
+  title: string;
+  numberOfParties: number;
+  productPrice: number;
+  discountPercentage: number;
+};
+
+export type TDraftingProductListItemWithAction = TActionOnRow<TDraftingProductListItem>;

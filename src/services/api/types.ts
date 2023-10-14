@@ -1,3 +1,4 @@
+import {TProductFormSchema} from '@/types';
 import {InfiniteData, MutationFunction, MutationOptions, QueryFunction, QueryKey, UseInfiniteQueryOptions, UseQueryOptions} from '@tanstack/react-query';
 
 import {AxiosError, AxiosResponse} from 'axios';
@@ -60,4 +61,13 @@ export type InfiniteQueryArgs<TQueryData, TSelectData = TQueryData> = {
 export type TOfficialVerificationStatusPayload = {
   officialId: string;
   verificationStatus: boolean;
+};
+
+export type TAddDraftingProductPayload = {
+  title: string;
+  numberOfParties: number;
+  productPrice: number;
+  discountPercentage: number;
+  productFile: File;
+  productForm: TProductFormSchema;
 };
